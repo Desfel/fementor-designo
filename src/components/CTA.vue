@@ -30,7 +30,7 @@ export default {
   padding: 72px 95px;
   background: url('../assets/img/shared/desktop/bg-pattern-call-to-action.svg') center right no-repeat, $primaryColor1;
   border-radius: 15px;
-  z-index: 2;
+  z-index: 3;
 
   @media (max-width: 1024px) {
     flex-direction: column;

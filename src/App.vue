@@ -143,6 +143,10 @@ body {
       opacity: 0;
       pointer-events: none;
       transition: opacity .3s ease-in-out;
+
+      @media (min-width: 768px) {
+        display: none;
+      }
     }
 
     &.is-open {

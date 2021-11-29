@@ -63,9 +63,21 @@ export default {
 <style lang="scss" scoped>
 @import '@/theme/variables.scss';
 
+.no-cta {
+  footer {
+    padding-top: 72px;
+
+    @media (max-width: 767px) {
+      padding-top: 64px;
+    }
+  }
+}
+
 footer {
+  position: relative;
   padding: 144px 10% 72px;
   background: $black;
+  z-index: 2;
 
   @media (max-width: 767px) {
     padding: 254px 24px 64px;
@@ -174,6 +186,7 @@ footer {
 
     .social-column {
       display: flex;
+      align-items: center;
 
       a {
         svg path {

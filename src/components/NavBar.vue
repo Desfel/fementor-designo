@@ -19,9 +19,9 @@
 
     <nav class="mobile-menu">
       <div class="mobile-items">
-        <router-link to="/about">Our Company</router-link>
-        <router-link to="/locations">Locations</router-link>
-        <router-link to="/contact">Contact</router-link>
+        <router-link to="/about" @click.native="openBurger">Our Company</router-link>
+        <router-link to="/locations" @click.native="openBurger">Locations</router-link>
+        <router-link to="/contact" @click.native="openBurger">Contact</router-link>
       </div>
     </nav>
   </header>
