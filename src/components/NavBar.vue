@@ -1,51 +1,48 @@
 <template>
-  <header class="navbar" :class="{ offline: !networkOnLine }">
+  <header class="navbar">
     <router-link to="/home">
-      <img alt="logo-bento" class="logo" src="@/assets/img/bento-starter.svg" />
-      <span class="site-name title-desktop">{{ appTitle }}</span>
-      <span class="site-name title-mobile">{{ appShortTitle }}</span>
+      <img alt="Designo" class="logo" src="@/assets/img/logo.png" />
     </router-link>
-    <div class="links">
-      <nav class="nav-links">
-        <div class="nav-item">
-          <router-link to="/products">Products</router-link>
-        </div>
-        <div v-if="!isUserLoggedIn && networkOnLine" class="nav-item">
-          <router-link to="/login">Login</router-link>
-        </div>
-        <div
-          v-if="isUserLoggedIn && networkOnLine"
-          class="nav-item logout-item"
-          @click="logout"
-        >
-          <a>Logout</a>
-        </div>
-        <div v-if="!networkOnLine" class="nav-item offline-label">Offline</div>
-      </nav>
 
-      <img
-        v-if="isUserLoggedIn && networkOnLine"
-        class="user-picture can-hide"
-        :src="user.photoURL"
-        alt="Avatar"
-      />
-    </div>
+    <nav class="nav-links">
+      <div class="nav-item">
+        <router-link to="/company">Our Company</router-link>
+        <router-link to="/locations">Locations</router-link>
+        <router-link to="/contact">Contact</router-link>
+      </div>
+    </nav>
+
+    <a href="#" class="trigger-burger" @click.prevent="openBurger">
+      <img v-if="!burgerIsOpen" src="@/assets/img/shared/mobile/icon-hamburger.svg" alt="Burger Menu Open" />
+      <img v-else src="@/assets/img/shared/mobile/icon-close.svg" alt="Burger Menu Close" />
+    </a>
+
+    <nav class="mobile-menu">
+      <div class="mobile-items">
+        <router-link to="/company">Our Company</router-link>
+        <router-link to="/locations">Locations</router-link>
+        <router-link to="/contact">Contact</router-link>
+      </div>
+    </nav>
   </header>
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import { mapGetters, mapState } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
+  data() {
+    return {
+      burgerIsOpen: false
+    }
+  },
   computed: {
-    ...mapGetters('authentication', ['isUserLoggedIn']),
-    ...mapState('authentication', ['user']),
-    ...mapState('app', ['networkOnLine', 'appTitle', 'appShortTitle'])
+    ...mapState('app', ['appTitle', 'appShortTitle'])
   },
   methods: {
-    async logout() {
-      await firebase.auth().signOut()
+    openBurger() {
+      this.burgerIsOpen = !this.burgerIsOpen
+      this.$emit('triggerBurger', this.burgerIsOpen)
     }
   }
 }
@@ -55,133 +52,103 @@ export default {
 @import '@/theme/variables.scss';
 
 .navbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 20;
-  right: 0;
-  height: $navbar-height;
-  background-color: $navbar-color;
-  box-sizing: border-box;
-  border-bottom: 1px solid #eaecef;
-  padding: 0.7rem 1.5rem;
-  line-height: 2.2rem;
+  display: flex;
+  align-items: center;
+  padding: 64px 10% 0;
+  margin-bottom: 64px;
 
-  a {
-    display: flex;
-    align-items: center;
+  @media (max-width: 1200px) {
+    padding: 64px 5% 0;
   }
 
-  .title-desktop {
-    display: inline;
+  @media (max-width: 1024px) {
+    padding: 64px 40px 0;
   }
 
-  .title-mobile {
-    display: none;
-  }
-
-  @media (max-width: 500px) {
-    padding: 0.7rem 0.7rem;
-
-    .can-hide {
-      display: none;
-    }
-
-    .title-desktop {
-      display: none;
-    }
-
-    .title-mobile {
-      display: block;
-    }
-  }
-
-  .site-name {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #2c3e50;
-    position: relative;
+  @media (max-width: 767px) {
+    position: fixed;
+    padding: 34px 24px;
+    margin: 0;
+    width: 100%;
+    background: $white;
+    z-index: 10;
   }
 
   .logo {
-    height: 24px;
-    padding-right: 8px;
+    width: 202px;
   }
 
-  .links {
-    padding-left: 1.5rem;
-    box-sizing: border-box;
-    white-space: nowrap;
-    font-size: 0.9rem;
-    position: absolute;
-    right: 1.5rem;
-    top: 0.7rem;
-    display: flex;
+  .nav-links {
+    margin-left: auto;
 
-    .nav-links {
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    .nav-item {
       display: flex;
       align-items: center;
-      justify-content: center;
 
-      .nav-item {
-        position: relative;
-        display: inline-block;
-        margin-left: 1.5rem;
-        line-height: 2.2rem;
+      a {
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 14px;
+        /* identical to box height, or 100% */
 
-        &:first-child {
-          margin-left: 0;
+        letter-spacing: 2px;
+        color: $secondaryColor2;
+        text-transform: uppercase;
+
+        &:not(:last-child) {
+          margin-right: 42px;
         }
 
-        a {
-          font-weight: 500;
-          font-size: 0.9rem;
-          text-decoration: none;
-          color: $navbar-link-color;
-          border-color: #2c3e50;
-          line-height: 1.4rem;
-          display: inline-block;
-          cursor: pointer;
-        }
-
-        @mixin activatedLink() {
-          margin-bottom: -2px;
-          border-bottom: 2px solid $vue-color;
-        }
-
-        .router-link-active {
-          @include activatedLink;
-        }
-
-        @media (hover) {
-          :hover {
-            @include activatedLink;
-          }
+        &:hover {
+          text-decoration: underline;
         }
       }
     }
   }
 
-  &.offline {
-    background: $navbar-offline-color;
-    .links .nav-links .nav-item a,
-    .site-name {
-      color: white;
+  .trigger-burger {
+    margin-left: auto;
+
+    @media (min-width: 768px) {
+      display: none;
     }
   }
 
-  .user-picture {
-    max-height: 32px;
-    margin-left: 1.5rem;
-    border-radius: 50%;
-  }
+  .mobile-menu {
+    width: 100%;
+    position: fixed;
+    top: 93px;
+    left: -800px;
+    padding: 48px 24px;
+    background: $black;
+    z-index: 9;
+    transition: left .5s ease-in-out;
 
-  .offline-label {
-    padding: 0px 10px;
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white;
-    margin-left: 1.5rem;
+    @media (min-width: 768px) {
+      display: none;
+    }
+
+    .mobile-items {
+      display: flex;
+      flex-direction: column;
+
+      a {
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 25px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: $white;
+
+        &:not(:last-child) {
+          margin-bottom: 32px;
+        }
+      }
+    }
   }
 }
 </style>
