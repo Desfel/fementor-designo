@@ -63,16 +63,6 @@ export default {
 <style lang="scss" scoped>
 @import '@/theme/variables.scss';
 
-.no-cta {
-  footer {
-    padding-top: 72px;
-
-    @media (max-width: 767px) {
-      padding-top: 64px;
-    }
-  }
-}
-
 footer {
   position: relative;
   padding: 144px 10% 72px;

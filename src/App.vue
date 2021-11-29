@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="{'is-open': burgerIsOpen}">
+  <div id="app" :class="[{'is-open': burgerIsOpen}, routeName]">
     <nav-bar @triggerBurger="triggerBurger"></nav-bar>
     <div class="main-wrapper">
       <router-view />
@@ -30,17 +30,30 @@ import { mapState, mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      burgerIsOpen: false
+      burgerIsOpen: false,
+      routeName: null
     }
   },
   components: { NavBar, FooterComponent, NewContentAvailableToastr, AppleAddToHomeScreenModal },
   computed: {
+    currentRouteName() {
+      return this.$route.name
+    },
     ...mapGetters('app', ['newContentAvailable']),
     ...mapState('app', ['showAddToHomeScreenModalForApple', 'refreshingApp'])
+  },
+  watch: {
+    '$route': 'currentRoute'
   },
   methods: {
     triggerBurger(value) {
       this.burgerIsOpen = value
+    },
+    currentRoute() {
+      this.$nextTick(() => {
+        this.routeName = this.$route.name
+        console.log(this.routeName)
+      })
     }
   }
 }
@@ -111,6 +124,16 @@ body {
     -moz-osx-font-smoothing: grayscale;
     font-size: 16px;
     color: #2c3e50;
+
+    &.contact {
+      footer {
+        padding-top: 72px;
+
+        @media (max-width: 767px) {
+          padding-top: 64px;
+        }
+      }
+    }
 
     .new-content-available-toastr {
       position: absolute;

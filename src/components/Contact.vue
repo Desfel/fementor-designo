@@ -137,9 +137,6 @@ export default {
       }
     }
   },
-  created() {
-    document.querySelector('#app').classList.add('no-cta')
-  },
   methods: {
     validateForm(e) {
       e.preventDefault()
