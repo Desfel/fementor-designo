@@ -6,7 +6,7 @@
 
     <nav class="nav-links">
       <div class="nav-item">
-        <router-link to="/company">Our Company</router-link>
+        <router-link to="/about">Our Company</router-link>
         <router-link to="/locations">Locations</router-link>
         <router-link to="/contact">Contact</router-link>
       </div>
@@ -19,7 +19,7 @@
 
     <nav class="mobile-menu">
       <div class="mobile-items">
-        <router-link to="/company">Our Company</router-link>
+        <router-link to="/about">Our Company</router-link>
         <router-link to="/locations">Locations</router-link>
         <router-link to="/contact">Contact</router-link>
       </div>

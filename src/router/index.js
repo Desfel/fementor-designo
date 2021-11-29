@@ -7,6 +7,7 @@ import GraphicDesign from "@/views/GraphicDesign"
 import AppDesign from "@/views/AppDesign"
 import { isNil } from 'lodash'
 import store from '@/store'
+import About from "@/views/About";
 
 Vue.use(Router)
 
@@ -50,6 +51,14 @@ const router = new Router({
       path: '/web-design',
       name: 'webdesign',
       component: WebDesign,
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About,
       meta: {
         authNotRequired: true
       }
