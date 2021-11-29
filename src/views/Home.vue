@@ -13,7 +13,7 @@
     </section>
 
     <section class="portfolio-nav-section">
-      <router-link to="/potfolio/web-design" class="portfolio-nav-block web-design">
+      <router-link to="/web-design" class="portfolio-nav-block web-design">
         <div class="portfolio-block-content">
           <p class="portfolio-nav-title">Web Design</p>
           <p class="portfolio-sub-title">
@@ -26,7 +26,7 @@
       </router-link>
 
       <div class="portfolio-nav-columns">
-        <router-link to="/potfolio/web-design" class="portfolio-nav-block app-design">
+        <router-link to="/app-design" class="portfolio-nav-block app-design">
           <div class="portfolio-block-content">
             <p class="portfolio-nav-title">App design</p>
             <p class="portfolio-sub-title">
@@ -38,7 +38,7 @@
           </div>
         </router-link>
 
-        <router-link to="/potfolio/web-design" class="portfolio-nav-block graphic-design">
+        <router-link to="/graphic-design" class="portfolio-nav-block graphic-design">
           <div class="portfolio-block-content">
             <p class="portfolio-nav-title">Graphic Design</p>
             <p class="portfolio-sub-title">
@@ -124,20 +124,37 @@ export default {
 @import '@/theme/variables.scss';
 
 .page-wrapper {
-  display: flex;
-  flex-direction: column;
-  padding: 0 10%;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 1006px;
+    height: 594px;
+    background: $secondaryColor3;
+    opacity: 0.5;
+    border-radius: 297px 297px 297px 0;
+    z-index: 1;
 
-  @media (max-width: 1200px) {
-    padding: 0 5%;
+    @media (max-width: 1024px) {
+      display: none;
+    }
   }
 
-  @media (max-width: 1024px) {
-    padding: 0 40px;
+  &:before {
+    top: 15%;
+    left: 0;
   }
 
-  @media (max-width: 767px) {
-    padding: 93px 0 0;
+  &:after {
+    transform: rotate(-180deg);
+    right: 0;
+    bottom: 74px;
+  }
+
+  section {
+    position: relative;
+    z-index: 2;
   }
 
   .intro-section {

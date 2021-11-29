@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Head from 'vue-head'
 import Home from '@/views/Home'
-import CheckLogin from '@/views/CheckLogin'
+import WebDesign from '@/views/WebDesign'
+import GraphicDesign from "@/views/GraphicDesign"
+import AppDesign from "@/views/AppDesign"
 import { isNil } from 'lodash'
 import store from '@/store'
 
@@ -29,37 +31,34 @@ const router = new Router({
       }
     },
     {
-      path: '/check-login',
-      name: 'check-login',
-      component: CheckLogin,
+      path: '/graphic-design',
+      name: 'graphicdesign',
+      component: GraphicDesign,
       meta: {
         authNotRequired: true
       }
     },
     {
-      path: '/login',
-      name: 'login',
-      component: () =>
-        import(/* webpackChunkName: "client-chunk-login" */ '@/views/Login.vue'),
+      path: '/app-design',
+      name: 'appdesign',
+      component: AppDesign,
       meta: {
         authNotRequired: true
       }
     },
     {
-      path: '/products',
-      name: 'products',
-      component: () =>
-        import(/* webpackChunkName: "client-chunk-products" */ '@/views/Products.vue')
-    },
-    {
-      path: '/products/:id',
-      name: 'product',
-      props: true,
-      component: () =>
-        import(/* webpackChunkName: "client-chunk-product-details" */ '@/views/Product.vue')
+      path: '/web-design',
+      name: 'webdesign',
+      component: WebDesign,
+      meta: {
+        authNotRequired: true
+      }
     },
     { path: '*', redirect: '/home' }
-  ]
+  ],
+  scrollBehavior () {
+    return { behavior: 'smooth', x: 0, y: 0 }
+  }
 })
 
 /**

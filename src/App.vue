@@ -48,6 +48,10 @@ export default {
 
 <style lang="scss">
 @import '@/theme/variables.scss';
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
 
@@ -154,7 +158,23 @@ body {
 
     .main-wrapper {
       .page-wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
         margin: auto;
+        padding: 0 10%;
+
+        @media (max-width: 1200px) {
+          padding: 0 5%;
+        }
+
+        @media (max-width: 1024px) {
+          padding: 0 40px;
+        }
+
+        @media (max-width: 767px) {
+          padding: 93px 0 0;
+        }
       }
     }
   }
