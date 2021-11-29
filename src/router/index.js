@@ -8,6 +8,7 @@ import AppDesign from "@/views/AppDesign"
 import { isNil } from 'lodash'
 import store from '@/store'
 import About from "@/views/About";
+import Locations from "@/views/Locations";
 
 Vue.use(Router)
 
@@ -59,6 +60,14 @@ const router = new Router({
       path: '/about',
       name: 'about',
       component: About,
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
+      path: '/locations',
+      name: 'locations',
+      component: Locations,
       meta: {
         authNotRequired: true
       }

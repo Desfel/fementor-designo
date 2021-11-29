@@ -7,7 +7,7 @@
 
       <nav class="nav-links">
         <div class="nav-item">
-          <router-link to="/company">Our Company</router-link>
+          <router-link to="/about">Our Company</router-link>
           <router-link to="/locations">Locations</router-link>
           <router-link to="/contact">Contact</router-link>
         </div>
@@ -85,8 +85,6 @@ footer {
     }
 
     .footer-logo {
-      width: 100%;
-
       @media (max-width: 767px) {
         width: 100%;
         padding-bottom: 32px;

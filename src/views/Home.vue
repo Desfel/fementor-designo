@@ -8,7 +8,7 @@
           and engaging brand experiences. Find out more about our services.
         </p>
 
-        <router-link to="/contact" class="site-btn">Learn more</router-link>
+        <router-link to="/web-design" class="site-btn">Learn more</router-link>
       </div>
     </section>
 
